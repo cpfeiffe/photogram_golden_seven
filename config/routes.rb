@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+get("/", { :controller => "photos", :action => "homepage"})
+
 get("/photos/new", { :controller => "photos", :action => "new_form" })
 get("/create_photo", { :controller => "photos", :action => "create_row" })
 

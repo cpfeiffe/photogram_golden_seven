@@ -1,5 +1,10 @@
 class PhotosController < ApplicationController
 
+  def homepage
+    @list_of_all_my_photos = Photo.all
+    render("photos/index.html.erb")
+  end
+
   def create_row
     url = params[:the_source]
     cap = params[:the_caption]
@@ -7,7 +12,7 @@ class PhotosController < ApplicationController
     new_photo.source = url
     new_photo.caption = cap
     new_photo.save
-    redirect_to("/photos/#{new_photo.id}")
+    redirect_to("/photos")
   end
 
   def new_form
@@ -39,7 +44,9 @@ class PhotosController < ApplicationController
   end
 
   def destroy_row
-    render("photos/destroy_row.html.erb")
+    @my_photo = Photo.find(params[:da_id])
+    @my_photo.destroy
+    redirect_to("/photos")
   end
 
 
